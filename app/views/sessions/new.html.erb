@@ -1,0 +1,17 @@
+<div class = "d-flex align-items-center justify-content-center">
+    <h1>Giriş</h1>
+</div>
+
+<%= form_with url: giris_path do |form| %>
+    <div class = "mb-3">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control", placeholder: "example@example.com" %>
+    </div>
+    <div class = "mb-3">
+        <%= form.label :Sifre %>
+        <%= form.password_field :password, class: "form-control", placeholder: "Şifre" %>
+    </div>
+    <div class = "mb-3">
+        <%= form.submit "Giriş Yap", class: "btn btn-primary"%>
+    </div>
+<% end %>

@@ -1,0 +1,23 @@
+<h1>Alınan Ürün Sepeti</h1>
+    <% @cart.each do |product| %>
+        <tr>
+          <th><%= product.name %></th>
+          <span>---</span>
+          <th><%= product.price%><span> TRY</span></th>
+        </tr>
+      <br>
+    <% end %>
+<hr>
+
+<h1>Kredi Kartı ile Satın Alım</h1>
+<%= form_tag buy_path, method: 'get', id: "buy-form" do %>
+  <span class= "payment-errors"></span>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.application.credentials[:stripe][:public_key] %>"
+    data-description="Ödeme"
+    data-email=<%= Current.user.email %>
+    data-amount= <%= (@amount*100).to_i %>
+    data-currency="TRY"
+    data-locale="auto">
+  </script>
+<% end %>

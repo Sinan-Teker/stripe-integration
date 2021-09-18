@@ -1,0 +1,27 @@
+<div class = "d-flex align-items-center justify-content-center">
+    <h1>Üye Kaydı</h1>
+</div>
+<%= form_with model: @user, url: kayit_path do |form| %>
+  <% if @user.errors.any? %>
+    <div class = "alert alert-danger">
+        <% @user.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+  <%end%>
+    <div class = "mb-3">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control", placeholder: "example@example.com" %>
+    </div>
+    <div class = "mb-3">
+        <%= form.label :Sifre %>
+        <%= form.password_field :password, class: "form-control", placeholder: "Şifre" %>
+    </div>
+    <div class = "mb-3">
+        <%= form.label :Sifre_Tekrarı %>
+        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Şifre Tekrarı" %>
+    </div>
+    <div class = "mb-3">
+        <%= form.submit "Kayıt Ol", class: "btn btn-primary" %>
+    </div>    
+<% end %>

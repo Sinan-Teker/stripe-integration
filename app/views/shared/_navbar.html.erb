@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <%= link_to "Logo", root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to "Ana Sayfa", root_path, class: "nav-link active"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Ürünler", products_path, class: "nav-link active"%>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if Current.user %>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="dropdown-item"> 
+              <%= link_to "Çıkış Yap", cikis_path, method: :delete, class: "nav-link active" %> 
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="dropdown-item"> 
+              <%= link_to "Üyeliği Yükselt", subscription_path, method: :get, class: "nav-link active" %> 
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="dropdown-item"> 
+              <%= link_to "Kullanıcıyı Sil", erase_path, method: :delete, class: "nav-link active" %>
+            </li>
+          </ul>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link disabled"><%= Current.user.email %></a>
+          </li>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to "Kayıt Ol", kayit_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Giriş Yap", giris_path, class: "nav-link" %>
+        </li>
+        <% end %>
+      </div>
+    </div>
+</nav>

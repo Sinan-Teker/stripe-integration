@@ -1,0 +1,15 @@
+<div class = "d-flex align-items-center justify-content-center">
+    <h1>Select your Monthly or Yearly Subscription</h1>
+</div>
+<hr>
+<% form_with model: @user, url: subscription_path do |form| %>
+    <div class = "mb-3">
+        <%= form.label :Firstname %>
+        <%= form.text_field :firstname, class: "form-control" %>
+    </div>
+    <div class = "mb-3">
+        <%= form.label :Lastname %>
+        <%= form.text_field :lastname, class: "form-control" %>
+    </div>
+    <%= form.submit "Yükselt", class: "btn btn-primary" %>
+<% end %>
