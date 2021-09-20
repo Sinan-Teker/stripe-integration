@@ -26,6 +26,10 @@
               <%= link_to "Üyeliği Yükselt", subscription_path, method: :get, class: "nav-link active" %> 
             </li>
             <li><hr class="dropdown-divider"></li>
+            <li class="dropdown-item">
+              <%= link_to "Ödeme Yöntemi", payment_path, class: "nav-link active"%>
+            </li>
+            <li><hr class="dropdown-divider"></li>
             <li class="dropdown-item"> 
               <%= link_to "Kullanıcıyı Sil", erase_path, method: :delete, class: "nav-link active" %>
             </li>
