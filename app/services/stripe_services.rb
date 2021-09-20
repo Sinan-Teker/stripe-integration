@@ -1,9 +1,10 @@
 class StripeServices
 
-    def initialize(user,product,money)
+    def initialize(user,product,money,card)
         @user = user
         @product = product
         @money = money
+        @card = card
     end
 
     # new customer create
@@ -33,11 +34,11 @@ class StripeServices
         Stripe::Customer.retrieve(@user)
     end
 
-    # new source create
-    def create_source
-        Stripe::Customer.create_source(
-        @user,
-        {source:'tok_visa'},
+    # Current customer card details call
+    def retrieve_source
+        Stripe::Customer.retrieve_source(
+            @user,
+            @card,
         )
     end
 
@@ -70,13 +71,21 @@ class StripeServices
         )
     end
 
+    # new source create
+    # def create_source
+    #     Stripe::Customer.create_source(
+    #     @user,
+    #     {source:'tok_visa'},
+    #     )
+    # end
+
     # customer credit card delete
-    def delete_source
-        Stripe::Customer.delete_source(
-        @user,
-        @product,
-        )
-    end
+    # def delete_source
+    #     Stripe::Customer.delete_source(
+    #     @user,
+    #     @product,
+    #     )
+    # end
 
     # new payment intent create line.
     # def create_payment_intents

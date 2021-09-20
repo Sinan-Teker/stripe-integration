@@ -14,7 +14,7 @@ class PaymentController < ApplicationController
     def create_card 
         respond_to do |format|
             if Current.user.stripe_customer_id.nil?
-                customer = StripeServices.new(Current.user.email,nil,nil).create_customer
+                customer = StripeServices.new(Current.user.email,nil,nil,nil).create_customer
                 #Here we are creating a stripe customer with the help of the StripeServices and pass as parameter current user email. 
                 Current.user.update(:stripe_customer_id => customer.id)
                 #we are updating user and giving to it stripe_customer_id which is equal to id of customer on Stripe

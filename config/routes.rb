@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   get "buy", to: "buy#new"
   post "buy", to: "buy#create"
 
-  get '/payment' => 'payment#index', as: :payment
-  get '/card/new' => 'payment#new_card', as: :add_payment_method
-  post '/card' => 'payment#create_card', as: :create_payment_method
-  get '/success' => 'payment#success', as: :success
+  get "/payment", to: "payment#index", as: :payment
+  get "/card/new", to: "payment#new_card", as: :add_payment_method
+  post "/card", to: "payment#create_card", as: :create_payment_method
+  get "/success", to: "payment#success", as: :success
 
   get "subscription", to: "subscription#new"
 

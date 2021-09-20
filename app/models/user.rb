@@ -8,7 +8,7 @@ class User < ApplicationRecord
     end
 
     after_create do
-        customer = StripeServices.new(email,nil,nil).create_customer
+        customer = StripeServices.new(email,nil,nil,nil).create_customer
         update(stripe_customer_id: customer.id)
     end
 end

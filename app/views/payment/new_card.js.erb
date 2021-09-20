@@ -6,7 +6,7 @@ var handler = StripeCheckout.configure({
     name: "Yeni Ödeme Yöntemi",
     description: "Add your credit card information",
     email: "<%= Current.user.email %>",
-    panelLabel: "Add payment method",
+    panelLabel: "Ödeme Yöntemi Ekle",
     allowRememberMe: false,
     token: function (token) {
         var form = document.getElementById('create-payment-method');

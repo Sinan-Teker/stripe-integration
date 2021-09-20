@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.update(product_params)
         # this is product retrieve line 
-        product = StripeServices.new(nil,@product.stripe_product_id,nil).retrieve_product
+        product = StripeServices.new(nil,@product.stripe_product_id,nil,nil).retrieve_product
         format.html { redirect_to @product, notice: "Ürün başarıyla güncelleştirildi." }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     # this is product delete line.
-    # StripeServices.new(nil,@product.stripe_product_id,nil).product_delete
+    # StripeServices.new(nil,@product.stripe_product_id,nil,nil).product_delete
     respond_to do |format|
       format.html { redirect_to products_url, notice: "Ürün başarıyla silindi." }
       format.json { head :no_content }

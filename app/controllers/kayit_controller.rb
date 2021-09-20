@@ -18,7 +18,7 @@ class KayitController < ApplicationController
     def destroy
         # Stripe customer delete in current session
         @user = User.find_by(id: session[:user_id])
-        StripeServices.new(@user.stripe_customer_id,nil,nil).delete_customer
+        StripeServices.new(@user.stripe_customer_id,nil,nil,nil).delete_customer
         @user.destroy
         redirect_to root_path, notice: "Hesabınız başarılı bir şekilde silinmiştir." 
     end
