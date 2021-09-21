@@ -71,6 +71,16 @@ class StripeServices
         )
     end
 
+    def subscription_list
+        Stripe::Subscription.list(customer: @user)
+    end
+
+    def subscription_create
+        Stripe::Subscription.create({
+        customer: @user,
+        items: [{plan: @product}], })
+    end
+
     # new source create
     # def create_source
     #     Stripe::Customer.create_source(

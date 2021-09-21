@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post "/card", to: "payment#create_card", as: :create_payment_method
 
   get "subscription", to: "subscription#new"
-  post "/subscription", to: "subscription#subscribe", as: :subscribe
+  post "/subscriptions", to: "subscription#subscribe", as: :subscribe
 
   root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

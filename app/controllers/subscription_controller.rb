@@ -14,16 +14,14 @@ class SubscriptionController < ApplicationController
       customer = Stripe::Customer.new Current.user.stripe_customer_id
       #we define our customer
 
-      subscriptions = Stripe::Subscription.list(customer: customer.id)
+      subscriptions = StripeServices.new(customer.id,nil,nil,nil).subscription_list
       subscriptions.each do |subscription|
         subscription.delete
       end
       #we delete all subscription that the customer has. We do this because we don't want that our customer to have multiple subscriptions
 
       plan_id = params[:plan_id]
-      subscription = Stripe::Subscription.create({
-        customer: customer,
-        items: [{plan: plan_id}], })
+      subscription = StripeServices.new(customer,plan_id,nil,nil).subscription_create
 
       subscription.save
       redirect_to subscription_path
