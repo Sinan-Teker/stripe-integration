@@ -32,12 +32,8 @@ class PaymentController < ApplicationController
             #we're attaching the card to the stripe customer
             customer.save
 
-            format.html { redirect_to success_path }
+            format.html { redirect_to subscription_path }
         end
-    end
-
-    def success
-    
     end
 
 end

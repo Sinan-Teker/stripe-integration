@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   get "/payment", to: "payment#index", as: :payment
   get "/card/new", to: "payment#new_card", as: :add_payment_method
   post "/card", to: "payment#create_card", as: :create_payment_method
-  get "/success", to: "payment#success", as: :success
 
   get "subscription", to: "subscription#new"
+  post "/subscription", to: "subscription#subscribe", as: :subscribe
 
   root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

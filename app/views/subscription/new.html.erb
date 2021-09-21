@@ -1,15 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4 text-center">
+      <h2>Yeni bir kart tanımlama işlemi başarılı bir şekilde gerçekleştirildi.</h2>
+    </div>
+  </div>
+</div>
 <div class = "d-flex align-items-center justify-content-center">
     <h1>Select your Monthly or Yearly Subscription</h1>
 </div>
 <hr>
-<%# <% form_with model: @user, url: subscription_path do |form| %>
-    <%# <div class = "mb-3"> %>
-        <%# <%= form.label :Firstname %>
-        <%# <%= form.text_field :firstname, class: "form-control" %>
-    <%# </div> %>
-    <%# <div class = "mb-3"> %>
-        <%# <%= form.label :Lastname %>
-        <%# <%= form.text_field :lastname, class: "form-control" %>
-    <%# </div> %>
-    <%# <%= form.submit "Yükselt", class: "btn btn-primary" %>
-<%# <% end %>
+<%=form_tag subscribe_path, method: :post do %>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 text-center">
+    <div class="form-group">
+      <select class="form-control" name="plan_id">
+        <% @plan.each do |plans| %>
+        <option value="<%= plans.id %>"><%= plans.amount/100 %>/TRY <%= plans.nickname %></option>
+        <%end%>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<div class="row">
+  <div class="col-md-12 mt-2 text-center">
+    <%= submit_tag 'Submit My Choice', class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
