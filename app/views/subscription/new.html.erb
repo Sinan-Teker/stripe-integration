@@ -1,32 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 mt-4 text-center">
-      <h2>Yeni bir kart tanımlama işlemi başarılı bir şekilde gerçekleştirildi.</h2>
+<div class="card text-center">
+  <div class="card-header">
+    <h2>Yeni bir kart tanımlama işlemi başarılı bir şekilde gerçekleştirildi.</h2>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Select your Monthly or Yearly Subscription</h4>
+    <%=form_tag subscribe_path, method: :post do %>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <div class="form-group">
+          <select class="form-select" name="plan_id">
+            <option selected>Üyelik(Yıllık/Aylık) Seçin</option>
+              <% @plan.each do |plans| %>
+                <option value="<%= plans.id %>"><%= plans.amount/100 %>/TRY <%= plans.nickname %></option>
+              <%end%>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
     </div>
-  </div>
-</div>
-<div class = "d-flex align-items-center justify-content-center">
-    <h1>Select your Monthly or Yearly Subscription</h1>
-</div>
-<hr>
-<%=form_tag subscribe_path, method: :post do %>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4 text-center">
-    <div class="form-group">
-      <select class="form-select" name="plan_id">
-        <option selected>Üyelik(Yıllık/Aylık) Seçin</option>
-          <% @plan.each do |plans| %>
-            <option value="<%= plans.id %>"><%= plans.amount/100 %>/TRY <%= plans.nickname %></option>
-          <%end%>
-      </select>
+    <div class="row">
+      <div class="col-md-12 mt-2 text-center">
+        <%= submit_tag 'Submit My Choice', class: "btn btn-primary" %>
+      </div>
     </div>
-  </div>
-  <div class="col-md-4"></div>
-</div>
-<div class="row">
-  <div class="col-md-12 mt-2 text-center">
-    <%= submit_tag 'Submit My Choice', class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
-<% end %>
