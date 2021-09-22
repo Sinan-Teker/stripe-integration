@@ -1,19 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 mt-4 text-center">
-      <h1> Hoşgeldin <%= @user %></h1>
-    </div>
-  </div>
-  <div class="row">
-    <h1 class="col-md-12 mt-5 text-center">
-      Yeni bir ödeme yöntemi girmek ister misin?
-    </h1>
-  </div>
-  <div class="row">
-    <div class="col-md-12 mt-4 text-center">
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Hoşgeldin <%= @user %></h5>
+    <p class="card-text">Yeni bir ödeme yöntemi girmek ister misin?</p>
+      <a>
         <%= form_tag create_payment_method_path, id: "create-payment-method" do  %>
             <%= link_to "Ödeme Yöntemi Gir", add_payment_method_path, remote: true, class: "btn btn-primary" %>
         <% end %>
-    </div>
+      </a>
   </div>
 </div>
