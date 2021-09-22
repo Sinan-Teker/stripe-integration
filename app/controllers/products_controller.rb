@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: "Ürün başarıyla oluşturuldu." }
+        format.html { redirect_to @product, notice: "Ürün oluşturuldu." }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         # this is product retrieve line 
         product = StripeServices.new(nil,@product.stripe_product_id,nil,nil).retrieve_product
-        format.html { redirect_to @product, notice: "Ürün başarıyla güncelleştirildi." }
+        format.html { redirect_to @product, notice: "Ürün güncelleştirildi." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
     # this is product delete line.
     # StripeServices.new(nil,@product.stripe_product_id,nil,nil).product_delete
     respond_to do |format|
-      format.html { redirect_to products_url, notice: "Ürün başarıyla silindi." }
+      format.html { redirect_to products_url, notice: "Ürün silindi." }
       format.json { head :no_content }
     end
   end

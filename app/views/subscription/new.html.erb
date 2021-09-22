@@ -14,10 +14,11 @@
   <div class="col-md-4"></div>
   <div class="col-md-4 text-center">
     <div class="form-group">
-      <select class="form-control" name="plan_id">
-        <% @plan.each do |plans| %>
-        <option value="<%= plans.id %>"><%= plans.amount/100 %>/TRY <%= plans.nickname %></option>
-        <%end%>
+      <select class="form-select" name="plan_id">
+        <option selected>Üyelik(Yıllık/Aylık) Seçin</option>
+          <% @plan.each do |plans| %>
+            <option value="<%= plans.id %>"><%= plans.amount/100 %>/TRY <%= plans.nickname %></option>
+          <%end%>
       </select>
     </div>
   </div>
