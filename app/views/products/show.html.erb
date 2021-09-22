@@ -1,12 +1,15 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Name:</strong>
+      <%= @product.name %>
+    </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+    <p class="card-text">
+      <strong>Price:</strong>
+      <%= @product.price %>
+    </p>
+    <%= link_to 'Edit', edit_product_path(@product), class:"btn btn-success" %> 
+    <%= link_to 'Back', products_path, class:"btn btn-warning" %>
+  </div>
+</div>

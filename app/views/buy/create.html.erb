@@ -1,24 +1,25 @@
-<h1>Alınan Ürün Sepeti</h1>
-    <% @cart.each do |product| %>
-        <tr>
-          <th><%= product.name %></th>
-          <span>---</span>
-          <th><%= product.price%><span> TRY</span></th>
-        </tr>
-      <br>
+<div class="card mb-2">
+  <div class="card-header d-flex justify-content-between">
+    <h3>Alınan Ürün Sepeti</h3>
+    <%= form_tag buy_path, method: 'get', id: "buy-form" do %>
+      <span class= "payment-errors"></span>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= Rails.application.credentials[:stripe][:public_key] %>"
+        data-description="Ödeme"
+        data-email=<%= Current.user.email %>
+        data-amount= <%= (@amount*100).to_i %>
+        data-currency="TRY"
+        data-panel-label="Ödeme Yap"
+        data-locale="auto">
+      </script>
     <% end %>
-<hr>
-
-<h1>Kredi Kartı ile Satın Alım</h1>
-<%= form_tag buy_path, method: 'get', id: "buy-form" do %>
-  <span class= "payment-errors"></span>
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.application.credentials[:stripe][:public_key] %>"
-    data-description="Ödeme"
-    data-email=<%= Current.user.email %>
-    data-amount= <%= (@amount*100).to_i %>
-    data-currency="TRY"
-    data-panel-label="Ödeme Yap"
-    data-locale="auto">
-  </script>
-<% end %>
+  </div>
+  <div class="card-body">
+    <% @cart.each do |product| %>
+     <blockquote class="border-bottom mb-0">
+        <p><%= product.name %></p>
+        <footer class="blockquote-footer mb-1"><%= product.price%> <cite title="Source Title">TRY</cite></footer>
+      </blockquote>
+    <% end %>
+  </div>
+</div>
