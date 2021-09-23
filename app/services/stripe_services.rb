@@ -87,6 +87,21 @@ class StripeServices
         items: [{plan: @product}], })
     end
 
+    # create invoice_item for customer
+    # def invoice_item_create
+    #     Stripe::InvoiceItem.create({
+    #     customer: @user,
+    #     price: @money,
+    #     })
+    # end
+
+    # create invoice for customer.
+    # def create_invoice
+    #     Stripe::Invoice.create({
+    #     customer: @user,
+    #     })
+    # end
+
     # new source create
     # def create_source
     #     Stripe::Customer.create_source(
@@ -95,28 +110,12 @@ class StripeServices
     #     )
     # end
 
-    # customer credit card delete
+    # customer source delete
     # def delete_source
     #     Stripe::Customer.delete_source(
     #     @user,
     #     @product,
     #     )
-    # end
-
-    # new payment intent create line.
-    # def create_payment_intents
-    #     Stripe::PaymentIntent.create({
-    #     amount: @money,
-    #     currency: 'TRY',
-    #     payment_method_types: ['card'],
-    #     })
-    # end
-
-    # create invoice for customer.
-    # def create_invoice
-    #     Stripe::Invoice.create({
-    #     customer: @user,
-    #     }, stripe_account: 'acct_1JNAwmFXEHfurYPJ')
     # end
 
     # product delete line.
