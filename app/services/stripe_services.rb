@@ -44,12 +44,18 @@ class StripeServices
 
     # new charge create
     def create_charge
-        Stripe::Charge.create(
+        Stripe::Charge.create({
             customer: @user,
             amount: @money,
             description: 'Charge Complete',
-            currency: 'TRY'
-        )
+            currency: 'TRY',
+            capture: false,
+        })
+    end
+
+    # charge capture line.
+    def capture_charge
+        Stripe::Charge.capture(@product)
     end
 
     # Current user/customer delete stripe data
@@ -104,11 +110,6 @@ class StripeServices
     #     currency: 'TRY',
     #     payment_method_types: ['card'],
     #     })
-    # end
-    
-    # charge capture line.
-    # def capture_charge
-    #     Stripe::Charge.capture(@product)
     # end
 
     # create invoice for customer.
