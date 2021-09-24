@@ -15,6 +15,7 @@ class Product < ApplicationRecord
     after_create do
         product = StripeServices.new(nil,name,nil,nil).create_product
         price = StripeServices.new(nil,product,self.price_in_cents,nil).create_price
+        tax_rate = StripeServices.new(nil,nil,nil,nil).taxrate_create
         update(stripe_product_id: product.id)
         update(stripe_price_id: price.id)
     end

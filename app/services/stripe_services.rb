@@ -87,6 +87,16 @@ class StripeServices
         items: [{plan: @product}], })
     end
 
+    def taxrate_create
+        Stripe::TaxRate.create({
+        display_name: 'MB',
+        description: 'Merkez Bankası Turkey',
+        jurisdiction: 'TR',
+        percentage: 18,
+        inclusive: true,
+        })
+    end
+
     # create invoice_item for customer
     # def invoice_item_create
     #     Stripe::InvoiceItem.create({
