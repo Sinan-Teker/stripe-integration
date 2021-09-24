@@ -27,6 +27,8 @@ class SubscriptionController < ApplicationController
       
       subscription = StripeServices.new(customer,plan_id,nil,nil).subscription_create
 
+      subscription_schedule = StripeServices.new(customer,subscription.start_date,plan_id,nil).subscription_schedule
+
       subscription.save
       redirect_to products_path
     end

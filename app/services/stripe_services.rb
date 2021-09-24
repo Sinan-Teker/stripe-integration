@@ -97,6 +97,25 @@ class StripeServices
         })
     end
 
+    def subscription_schedule
+        Stripe::SubscriptionSchedule.create({
+        customer: @user,
+        start_date: @product,
+        end_behavior: 'release',
+        phases: [
+            {
+            items: [
+                {
+                price: @money,
+                quantity: 1,
+                },
+            ],
+            iterations: 12,
+            },
+        ],
+        })
+    end
+
     # create invoice_item for customer
     # def invoice_item_create
     #     Stripe::InvoiceItem.create({
