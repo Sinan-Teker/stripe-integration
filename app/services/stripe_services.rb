@@ -71,9 +71,9 @@ class StripeServices
     # price update line.
     def price_update
         Stripe::Price.create(
-        product: @product,
-        unit_amount: @money,
-        currency: 'TRY'
+            product: @product,
+            unit_amount: @money,
+            currency: 'TRY'
         )
     end
 
@@ -85,48 +85,79 @@ class StripeServices
     # create customer subscription
     def subscription_create
         Stripe::Subscription.create({
-        customer: @user,
-        items: [{plan: @product}], })
+            customer: @user,
+            items: [{plan: @product}],
+        })
     end
 
     # payment taxrate create
     def taxrate_create
         Stripe::TaxRate.create({
-        display_name: 'MB',
-        description: 'Merkez Bankası Turkey',
-        jurisdiction: 'TR',
-        percentage: 18,
-        inclusive: true,
+            display_name: 'MB',
+            description: 'Merkez Bankası Turkey',
+            jurisdiction: 'TR',
+            percentage: 18,
+            inclusive: true,
         })
     end
 
     # customer subscription schedule
     def subscription_schedule
         Stripe::SubscriptionSchedule.create({
-        customer: @user,
-        start_date: @product,
-        end_behavior: 'release',
-        phases: [
-            {
-            items: [
+            customer: @user,
+            start_date: @product,
+            end_behavior: 'release',
+            phases: [
                 {
-                price: @money,
-                quantity: 1,
+                items: [
+                    {
+                    price: @money,
+                    quantity: 1,
+                    },
+                ],
+                iterations: 12,
                 },
             ],
-            iterations: 12,
-            },
-        ],
         })
     end
 
     # cancel customer subscription
     def cancel_subscription
         Stripe::Subscription.delete(
-        @user,
+            @user,
         )
     end
-    
+
+    # current customer subscription retrieve
+    def subscription_retrieve
+        Stripe::Subscription.retrieve(
+            @user,
+        )
+    end
+
+    # current customer subscription invoice retrieve
+    def invoice_retrieve
+        Stripe::Invoice.retrieve(
+            @user,
+        )
+    end
+
+    # Current invoice list call
+    def invoice_list
+        Stripe::Invoice.list({
+            customer: @user,
+            limit: 1,
+        })
+    end
+
+    # Current customer subscription cancel and refund money
+    def subscription_refund
+        Stripe::Refund.create({
+            charge: @product,
+            amount: @money,
+        })
+    end
+
     # create invoice_item for customer
     # def invoice_item_create
     #     Stripe::InvoiceItem.create({
