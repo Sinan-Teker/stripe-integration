@@ -77,16 +77,19 @@ class StripeServices
         )
     end
 
+    # listed customer subscription
     def subscription_list
         Stripe::Subscription.list(customer: @user)
     end
 
+    # create customer subscription
     def subscription_create
         Stripe::Subscription.create({
         customer: @user,
         items: [{plan: @product}], })
     end
 
+    # payment taxrate create
     def taxrate_create
         Stripe::TaxRate.create({
         display_name: 'MB',
@@ -97,6 +100,7 @@ class StripeServices
         })
     end
 
+    # customer subscription schedule
     def subscription_schedule
         Stripe::SubscriptionSchedule.create({
         customer: @user,
@@ -116,6 +120,13 @@ class StripeServices
         })
     end
 
+    # cancel customer subscription
+    def cancel_subscription
+        Stripe::Subscription.delete(
+        @user,
+        )
+    end
+    
     # create invoice_item for customer
     # def invoice_item_create
     #     Stripe::InvoiceItem.create({

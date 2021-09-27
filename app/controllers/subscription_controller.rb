@@ -25,11 +25,17 @@ class SubscriptionController < ApplicationController
 
       # invoice = StripeServices.new(customer,nil,nil,nil).create_invoice
       
+      # customer subscription plan create 
       subscription = StripeServices.new(customer,plan_id,nil,nil).subscription_create
 
+      # create subscription schedule 1 hour current customer
       subscription_schedule = StripeServices.new(customer,subscription.start_date,plan_id,nil).subscription_schedule
 
       subscription.save
+
+      # current customer subscription cancel
+      # subscription_cancel = StripeServices.new(subscription.id,nil,nil,nil).cancel_subscription
+      
       redirect_to products_path
     end
 end
