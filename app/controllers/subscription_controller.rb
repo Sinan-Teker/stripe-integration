@@ -30,15 +30,18 @@ class SubscriptionController < ApplicationController
 
       subscription.save
 
+      # invoice list call
       invoice_list = StripeServices.new(Current.user.stripe_customer_id,nil,nil,nil).invoice_list
 
+      # current customer invoice retrieve
       invoice_retrieve = StripeServices.new(invoice_list["data"][0]["id"],nil,nil,nil).invoice_retrieve
 
+      # current subscription payment refund
       subscription_refund = StripeServices.new(nil,invoice_list["data"][0]["charge"],invoice_retrieve.lines["data"][0]["amount"],nil).subscription_refund
 
       # create subscription schedule 1 hour current customer
       # subscription_schedule = StripeServices.new(customer,subscription.start_date,plan_id,nil).subscription_schedule
-      
+
       # current customer subscription cancel
       subscription_cancel = StripeServices.new(subscription.id,nil,nil,nil).cancel_subscription
       

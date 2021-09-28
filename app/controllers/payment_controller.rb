@@ -32,7 +32,7 @@ class PaymentController < ApplicationController
             #we're attaching the card to the stripe customer
             customer.save
 
-            format.html { redirect_to subscription_path }
+            format.html { redirect_to products_path }
         end
     end
 
