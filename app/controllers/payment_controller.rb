@@ -23,7 +23,7 @@ class PaymentController < ApplicationController
             card_token = params[:stripeToken]
             #it's the stripeToken that we added in the hidden input
             if card_token.nil?
-                format.html { redirect_to payment_path, error: ""}
+                format.html { redirect_to payment_path, error: "Kredi kartı verisi bulunamadı. Tekrar deneyin."}
             end
             #checking if a card was giving.
 
