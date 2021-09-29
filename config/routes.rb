@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get "subscription", to: "subscription#new"
   post "/subscriptions", to: "subscription#subscribe", as: :subscribe
+  get "/subscription/refund", to: "subscription#create"
+  post "/refunds", to: "subscription#refund", as: :refund
 
   root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

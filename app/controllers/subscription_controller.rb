@@ -24,11 +24,30 @@ class SubscriptionController < ApplicationController
       # invoice_item = StripeServices.new(customer,nil,plan_id,nil).invoice_item_create
 
       # invoice = StripeServices.new(customer,nil,nil,nil).create_invoice
+
+      # create subscription schedule 1 hour current customer
+      # subscription_schedule = StripeServices.new(customer,subscription.start_date,plan_id,nil).subscription_schedule
       
       # customer subscription plan create 
       subscription = StripeServices.new(customer,plan_id,nil,nil).subscription_create
 
       subscription.save
+      
+      redirect_to products_path
+    end
+
+    def create
+      @user = Current.user.email
+    end
+
+    def refund
+      customer = Stripe::Customer.new Current.user.stripe_customer_id
+      # we define our customer
+
+      subscription = StripeServices.new(customer.id,nil,nil,nil).subscription_list
+
+      # current subscription retireve call
+      retrieve_subscription = StripeServices.new(subscription["data"][0]["id"],nil,nil,nil).subscription_retrieve
 
       # invoice list call
       invoice_list = StripeServices.new(Current.user.stripe_customer_id,nil,nil,nil).invoice_list
@@ -39,12 +58,9 @@ class SubscriptionController < ApplicationController
       # current subscription payment refund
       subscription_refund = StripeServices.new(nil,invoice_list["data"][0]["charge"],invoice_retrieve.lines["data"][0]["amount"],nil).subscription_refund
 
-      # create subscription schedule 1 hour current customer
-      # subscription_schedule = StripeServices.new(customer,subscription.start_date,plan_id,nil).subscription_schedule
-
       # current customer subscription cancel
-      subscription_cancel = StripeServices.new(subscription.id,nil,nil,nil).cancel_subscription
-      
+      subscription_cancel = StripeServices.new(subscription["data"][0]["id"],nil,nil,nil).cancel_subscription
+
       redirect_to products_path
     end
 end

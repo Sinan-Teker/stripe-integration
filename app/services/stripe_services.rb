@@ -17,7 +17,9 @@ class StripeServices
 
     # new product create
     def create_product
-        Stripe::Product.create(name: @product)
+        Stripe::Product.create(
+            name: @product,
+        )
     end
 
     # new product price amount create
@@ -31,7 +33,9 @@ class StripeServices
 
     # Current customer call
     def retrieve_customer
-        Stripe::Customer.retrieve(@user)
+        Stripe::Customer.retrieve(
+            @user,
+        )
     end
 
     # Current customer card details call
@@ -55,17 +59,23 @@ class StripeServices
 
     # charge capture line.
     def capture_charge
-        Stripe::Charge.capture(@product)
+        Stripe::Charge.capture(
+            @product,
+        )
     end
 
     # Current user/customer delete stripe data
     def delete_customer
-        Stripe::Customer.delete(@user)
+        Stripe::Customer.delete(
+            @user,
+        )
     end
 
     # Current product call
     def retrieve_product
-        Stripe::Product.retrieve(@product)
+        Stripe::Product.retrieve(
+            @product,
+        )
     end
 
     # price update line.
@@ -79,7 +89,10 @@ class StripeServices
 
     # listed customer subscription
     def subscription_list
-        Stripe::Subscription.list(customer: @user)
+        Stripe::Subscription.list(
+            customer: @user,
+            limit: 1,
+        )
     end
 
     # create customer subscription
@@ -90,11 +103,18 @@ class StripeServices
         })
     end
 
+    # current customer subscription call
+    def subscription_retrieve
+        Stripe::Subscription.retrieve(
+            @user,
+        )
+    end
+
     # payment taxrate create
     def taxrate_create
         Stripe::TaxRate.create({
             display_name: 'MB',
-            description: 'Merkez Bankası Turkey',
+            description: 'Merkez Bankasi Turkey',
             jurisdiction: 'TR',
             percentage: 18,
             inclusive: true,
@@ -128,13 +148,6 @@ class StripeServices
         )
     end
 
-    # current customer subscription retrieve
-    def subscription_retrieve
-        Stripe::Subscription.retrieve(
-            @user,
-        )
-    end
-
     # current customer subscription invoice retrieve
     def invoice_retrieve
         Stripe::Invoice.retrieve(
@@ -161,37 +174,39 @@ class StripeServices
     # create invoice_item for customer
     # def invoice_item_create
     #     Stripe::InvoiceItem.create({
-    #     customer: @user,
-    #     price: @money,
+    #       customer: @user,
+    #       price: @money,
     #     })
     # end
 
     # create invoice for customer.
     # def create_invoice
     #     Stripe::Invoice.create({
-    #     customer: @user,
+    #       customer: @user,
     #     })
     # end
 
     # new source create
     # def create_source
     #     Stripe::Customer.create_source(
-    #     @user,
-    #     {source:'tok_visa'},
+    #       @user,
+    #       {source:'tok_visa'},
     #     )
     # end
 
     # customer source delete
     # def delete_source
     #     Stripe::Customer.delete_source(
-    #     @user,
-    #     @product,
+    #       @user,
+    #       @product,
     #     )
     # end
 
     # product delete line.
     # def product_delete
-    #     Stripe::Product.delete(@product)
+    #     Stripe::Product.delete(
+    #        @product
+    #     )
     # end
 
 end

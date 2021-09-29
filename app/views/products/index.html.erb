@@ -23,7 +23,7 @@
                 <td><%= product.price %><span> TRY</span></td>
                 <td>
                   <% if @cart.include?(product) %>
-                <%= button_to "Sepetten Kaldır", remove_from_cart_path(product), method: :delete, class: "btn btn-warning btn-sm float-end" %>
+                    <%= button_to "Sepetten Kaldır", remove_from_cart_path(product), method: :delete, class: "btn btn-warning btn-sm float-end" %>
                   <% else %>
                     <%= button_to "Sepete Ekle", add_to_cart_path(product), class: "btn btn-warning btn-sm float-end" %>
                   <% end %>

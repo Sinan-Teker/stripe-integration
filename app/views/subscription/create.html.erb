@@ -1,0 +1,11 @@
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Hoşgeldin <%= @user %></h5>
+    <p class="card-text">Üyeliğinizi iptal etmek istediğinize emin misiniz?</p>
+      <a>
+        <%=form_tag refund_path, method: :post do %>
+          <%= submit_tag "Üyeliği İptal Et", class: "btn btn-primary" %>
+        <% end %>
+      </a>
+  </div>
+</div

@@ -30,10 +30,8 @@ class BuyController < ApplicationController
         # invoice for customer.
         # invoice = StripeServices.new(customer.id,nil,nil,nil).create_invoice
 
-
         # empty the cart after purchase
         session[:cart] = []
-
 
     end
 
