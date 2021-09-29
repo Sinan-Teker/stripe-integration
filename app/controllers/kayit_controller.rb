@@ -8,6 +8,7 @@ class KayitController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
+            session[:cart] = []
             redirect_to root_path, notice: "Başarılı bir şekilde kullanıcı oluşturuldu."
         else
             flash[:alert] = "Kullanıcı oluşturulurken bir problemle karşılaşıldı. Tekrar deneyin..!"

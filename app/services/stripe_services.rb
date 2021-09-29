@@ -172,41 +172,41 @@ class StripeServices
     end
 
     # create invoice_item for customer
-    # def invoice_item_create
-    #     Stripe::InvoiceItem.create({
-    #       customer: @user,
-    #       price: @money,
-    #     })
-    # end
+    def invoice_item_create
+        Stripe::InvoiceItem.create({
+          customer: @user,
+          price: @money,
+        })
+    end
 
     # create invoice for customer.
-    # def create_invoice
-    #     Stripe::Invoice.create({
-    #       customer: @user,
-    #     })
-    # end
+    def create_invoice
+        Stripe::Invoice.create({
+          customer: @user,
+        })
+    end
 
     # new source create
-    # def create_source
-    #     Stripe::Customer.create_source(
-    #       @user,
-    #       {source:'tok_visa'},
-    #     )
-    # end
+    def create_source
+        Stripe::Customer.create_source(
+          @user,
+          {source:'tok_visa'},
+        )
+    end
 
     # customer source delete
-    # def delete_source
-    #     Stripe::Customer.delete_source(
-    #       @user,
-    #       @product,
-    #     )
-    # end
+    def delete_source
+        Stripe::Customer.delete_source(
+          @user,
+          @product,
+        )
+    end
 
     # product delete line.
-    # def product_delete
-    #     Stripe::Product.delete(
-    #        @product
-    #     )
-    # end
+    def product_delete
+        Stripe::Product.delete(
+           @product
+        )
+    end
 
 end
