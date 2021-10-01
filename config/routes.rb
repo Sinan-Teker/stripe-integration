@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   get "subscription", to: "subscription#new"
   post "/subscriptions", to: "subscription#subscribe", as: :subscribe
-  get "/subscription/refund", to: "subscription#create"
+  get "/subscription/refund", to: "subscription#destroy"
   post "/refunds", to: "subscription#refund", as: :refund
 
   root to: "home#index"

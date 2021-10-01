@@ -36,7 +36,7 @@ class SubscriptionController < ApplicationController
       redirect_to products_path
     end
 
-    def create
+    def destroy
       @user = Current.user.email
     end
 
