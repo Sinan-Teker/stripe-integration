@@ -50,6 +50,7 @@ Finally create the database
 ```sh
 rails db:create
 ```
+![](https://i.hizliresim.com/mexjbwm.jpg)
 ***
 ## Create the Migration, Models, Controllers, Views and Services
 
@@ -201,6 +202,7 @@ end
 ```sh
 <p>Hesabınız başarılı bir şekilde silinmiştir.</p>
 ```
+![](https://i.hizliresim.com/or9ytxa.jpg)
 ***
 Now create user login, log out session pages and controllers
 
@@ -251,10 +253,11 @@ end
     </div>
 <% end %>
 ```
+![](https://i.hizliresim.com/fzw7bh0.jpg)
 ***
 We are updating our products pages and controllers that we created with Scaffold
 
-#### Update _../app/views/products/_form.html.erb_ file:
+#### Update _../app/views/products/__form.html.erb_ file:
 ```sh
 <%= form_with(model: product) do |form| %>
   <% if product.errors.any? %>
@@ -393,6 +396,16 @@ We are updating our products pages and controllers that we created with Scaffold
   </div>
 </div>
 ```
+#### Products page (Empty cart)
+![](https://i.hizliresim.com/2rhxvrc.jpg)
+#### Add product
+![](https://i.hizliresim.com/rynbh18.jpg)
+#### Show product
+![](https://i.hizliresim.com/7s0gzpw.jpg)
+#### Edit product
+![](https://i.hizliresim.com/dcvgi83.jpg)
+#### Products page (Load cart)
+![](https://i.hizliresim.com/5mzrwto.jpg)
 ***
 We set a payment method to receive payment. Now create a payment method pages and controllers files.
 
@@ -484,6 +497,10 @@ window.addEventListener('popstate', function() {
     handler.close();
 });
 ```
+#### Payment method page
+![](https://i.hizliresim.com/7sqk1ej.jpg)
+#### Card add page
+![](https://i.hizliresim.com/c41nlh1.jpg)
 ***
 We can now buy the products we put in the cart. We create a buy page and controllers for this.
 
@@ -566,9 +583,13 @@ end
 ```sh
 <h2>Ödemeniz Başarıyla Gerçekleştirildi.</h2>
 ```
+#### Buy select product/products page
+![](https://i.hizliresim.com/8rpbuq9.jpg)
+#### Card information page
+![](https://i.hizliresim.com/nd9ykye.jpg)
 ***
 We can choose any of the monthly or yearly subscription options with the payment method you defined earlier.
-We create a membership pages and controllers for this.
+We create a subscription pages and controllers for this.
 #### Create _../app/controllers/subscription_controller_ file:
 ```sh
 class SubscriptionController < ApplicationController
@@ -684,6 +705,10 @@ end
   </div>
 </div
 ```
+#### Select subscription method page
+![](https://i.hizliresim.com/mayxyfh.jpg)
+#### Subscription cancelled page
+![](https://i.hizliresim.com/gml7mq3.jpg)
 ***
 After all this, we define our Stripe service.
 
